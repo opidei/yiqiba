@@ -1,0 +1,18 @@
+.page.show {
+  overflow: hidden;
+}
+.special{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  padding: 20rpx;
+  z-index: 1024;
+  margin:0 20rpx 100rpx;
+  align-items: center;
+  min-height: 100rpx;
+  justify-content: space-between;
+  margin-left:0;
+}
+.margin-bottom-big{
+  margin-bottom: 120rpx;
+}

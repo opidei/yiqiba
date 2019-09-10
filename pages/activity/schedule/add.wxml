@@ -1,0 +1,243 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">{{edit=='true'?'编辑':'添加'}}行程</view>
+</cu-custom>
+<form>
+  <view class="cu-form-group margin-top">
+    <view class="title">行程天数</view>
+    <picker mode="selector" value="{{day}}" range='{{[1,2,3,4,5,6,7]}}' value="{{index}}" bindchange="DayChange">
+        <view class="picker">
+          {{day+1}}
+        </view>
+      </picker>
+  </view>
+  <view wx:if="{{type==5}}">
+    <view class="cu-form-group margin-top">
+      <view class="title">注意事项</view>
+      <input placeholder="标题"></input>
+    </view>
+    <view class="cu-form-group top">
+      <view class="title">具体内容</view>
+      <textarea data-placeholder="事项清单" maxlength="-1" disabled="{{modalName!=null}}" placeholder-class="placeholder" class="{{textareaBValue?'value':''}}" bindinput="textareaBInput"></textarea>
+    </view>
+  </view>
+  <view wx:if="{{type==0}}">
+    <view class="cu-form-group margin-top">
+      <view class="title">航班号</view>
+      <input placeholder="航班号" name='f_no'></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">航空公司</view>
+      <input placeholder="航空公司" name='f_corporation'></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">出发时间</view>
+      <picker mode="date" name="f_sotime" value="{{s_date}}" start="{{startdate}}" bindchange="S_DateChange">
+        <view class="picker">
+          {{s_date}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">出发机场</view>
+      <input placeholder="出发机场" name='f_soairport'></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">出发航站楼</view>
+      <input placeholder="出发航站楼" name='f_soter'></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">到达时间</view>
+      <picker mode="date" name="f_arrtime" value="{{a_date}}" start="{{startdate}}" bindchange="A_DateChange">
+        <view class="picker">
+          {{a_date}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">到达机场</view>
+      <input placeholder="到达机场" name='f_arrairport'></input>
+    </view>
+        <view class="cu-form-group">
+      <view class="title">到达航站楼</view>
+      <input placeholder="到达航站楼" name='f_arrter'></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">旅行备注</view>
+      <input placeholder="旅行备注" name='f_remark'></input>
+    </view>
+  </view>
+  <view wx:if="{{type==1}}">
+    <view class="cu-form-group margin-top">
+      <view class="title">火车车次</view>
+      <input placeholder="火车车次" name="t_no"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">出发站</view>
+      <input placeholder="出发站" name="t_sostation"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">出发时间</view>
+      <picker mode="date" name="t_sotime" value="{{s_date}}" start="{{startdate}}" bindchange="S_DateChange">
+        <view class="picker">
+          {{s_date}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">到达站</view>
+      <input placeholder="到达站" name="t_arrstation"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">到达时间</view>
+      <picker mode="date" name="t_arrtime" value="{{a_date}}" start="{{startdate}}" bindchange="A_DateChange">
+        <view class="picker">
+          {{a_date}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">旅行备注</view>
+      <input placeholder="旅行备注" name="t_remark"></input>
+    </view>
+  </view>
+  <view wx:if="{{type==2}}">
+    <view class="cu-form-group">
+      <view class="title">出发地点</view>
+      <input placeholder="出发地点" name="sd_soplace"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">出发时间</view>
+      <picker mode="date" name="sd_sotime" value="{{s_date}}" start="{{startdate}}" bindchange="S_DateChange">
+        <view class="picker">
+          {{s_date}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">到达地点</view>
+      <input placeholder="到达地点" name="sd_arrplace"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">到达时间</view>
+      <picker mode="date" name="sd_arrtime" value="{{a_date}}" start="{{startdate}}" bindchange="A_DateChange">
+        <view class="picker">
+          {{a_date}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">旅行备注</view>
+      <input placeholder="旅行备注" name="sd_remark"></input>
+    </view>
+  </view>
+  <view wx:if="{{type==3}}">
+    <view class="cu-form-group margin-top">
+      <view class="title">酒店名称</view>
+      <input placeholder="酒店名称" name="ht_name"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">酒店地址</view>
+      <input placeholder="酒店地址" name="ht_addr"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">酒店电话</view>
+      <input placeholder="酒店电话" name="ht_phone"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">入住时间</view>
+      <picker mode="date" name="ht_chkitime" value="{{s_date}}" start="{{startdate}}" bindchange="S_DateChange">
+        <view class="picker">
+          {{s_date}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">退房时间</view>
+      <picker mode="date" name="ht_chkotime" value="{{a_date}}" start="{{startdate}}" bindchange="A_DateChange">
+        <view class="picker">
+          {{a_date}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">酒店房型</view>
+      <input placeholder="酒店房型" name="ht_rmtyp"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">房间数量</view>
+      <input placeholder="房间数量" name="ht_rmcnt"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">入住备注</view>
+      <input placeholder="入住备注" name="ht_remark"></input>
+    </view>
+  </view>
+  <view wx:if="{{type==4}}">
+    <view class="cu-form-group margin-top">
+      <view class="title">餐馆名称</view>
+      <input placeholder="餐馆名称" name="res_name"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">餐馆地址</view>
+      <input placeholder="餐馆地址" name="res_addr"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">餐馆电话</view>
+      <input placeholder="餐馆电话" name="res_phone"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">开始时间</view>
+      <picker mode="time" value="{{s_time}}" name="res_stime" start="06:00" end="23:59" bindchange="S_TimeChange">
+        <view class="picker">
+          {{s_time}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">结束时间</view>
+      <picker mode="time" value="{{e_time}}" name="res_etime" start="06:00" end="23:59" bindchange="E_DateChange">
+        <view class="picker">
+          {{e_time}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">用餐备注</view>
+      <input placeholder="用餐备注" name="res_remark"></input>
+    </view>
+  </view>
+  <view wx:if="{{type==5}}">
+    <view class='cu-form-group margin-top'>
+      <view class="title">景点名称</view>
+      <input placeholder="景点名称" name="att_name"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">景点地址</view>
+      <input placeholder="景点地址" name="att_addr"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">开始时间</view>
+      <picker mode="time" name="att_stime" value="{{s_time}}" start="06:00" end="23:59" bindchange="S_TimeChange">
+        <view class="picker">
+          {{s_time}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">结束时间</view>
+      <picker mode="time" name="att_etime" value="{{e_time}}" start="06:00" end="23:59" bindchange="E_DateChange">
+        <view class="picker">
+          {{e_time}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">游览备注</view>
+      <input placeholder="游览备注" name="att_remark"></input>
+    </view>
+  </view>
+  <view class="cu-bar btn-group margin-top">
+    <button form-type='submit' class="cu-btn bg-green shadow-blur round lg">确认添加</button>
+  </view>
+</form>

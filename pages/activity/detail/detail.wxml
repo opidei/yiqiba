@@ -1,0 +1,137 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">{{title}}</view>
+</cu-custom>
+<scroll-view scroll-y class="scrollPage">
+  <swiper class="card-swiper square-dot bg-white" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+    <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
+      <view class="swiper-item">
+        <image src="{{item.url}}" mode="aspectFill"></image>
+      </view>
+    </swiper-item>
+  </swiper>
+  <view class="flex solid-bottom padding justify-between">
+    <view class='margin-xs radius justify-center'>
+      <text class='text-black text-bold justify-center' style='font-size:40rpx'>{{title}}</text>
+      <view class='margin-top'>
+        <view class="cu-tag bg-red round">亲子游</view>
+        <view class="cu-tag bg-orange round">附近</view>
+        <view class="cu-tag bg-yellow round">季节</view>
+      </view>
+    </view>
+    <view class='radius'>
+      <view>
+        <button wx:if="{{isJoin}}" class='cu-btn line-blue lg' disabled>已参加</button>
+        <button wx:else class='cu-btn bg-green lg' bindtap="{{isCrt?'edit':'join'}}">{{isCrt?'管理活动':'参加活动'}}</button>
+      </view>     
+      <view class="cu-avatar-group margin-min">
+          <view class="cu-avatar round sm" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10004.jpg);"></view>
+          <view class="cu-avatar round sm" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10003.jpg);"></view>
+          <view class="cu-avatar round sm" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10002.jpg);"></view>
+          <view class="cu-avatar round sm" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        </view>
+        <text class="text-grey text-sm">4家</text>
+    </view>
+  </view>
+  <view class="cu-bar solid-bottom bg-white solid-bottom">
+    <view class="action">
+      <text class="icon-title text-red"></text><text class="text-xl">活动介绍</text>
+    </view>
+  </view>
+  <view class="flex-sub bg-white solid-bottom text-left">
+    <view class="solid-bottom text-lg padding">
+      <text class="text-black">{{intro}}</text>
+    </view>
+  </view>
+
+  <view class="cu-bar bg-white ">
+    <view class="action">
+      <text class="icon-title text-blue"></text><text class="text-xl">行程安排</text>
+    </view>
+  </view>
+  <view class='basis-xl bg-white padding-sm radius text-lg'>
+    <text class='icon-squarecheck lg text-green'></text>
+    <text>2019年4月28日</text>
+  </view>
+  <view class='cu-list bg-white menu solid-bottom'>
+    <view class='cu-item'>
+      <view class='content'>
+        <text class='icon-pic text-green'></text>
+        <text>密云水库</text>
+      </view>
+    </view>
+    <view class='cu-item'>
+      <view class='content'>
+        <text class='icon-footprint text-red'></text>
+        <text>乘船游湖</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-bar bg-white">
+    <view class="action">
+      <text class="icon-title text-green"></text><text class="text-xl">活动评论</text>
+    </view>
+  </view>
+  <view class="text-lg padding" wx:if="{{comment.length===0}}">暂无评论</view>
+  <view wx:if="{{comment.length>=1}}" wx:for="{{comment}}" wx:key="key">
+    <view class="text-left padding bg-white text-df">{{item.nick_name}}：</view>
+    <view class="text-left padding bg-white text-lg">{{item.content}}</view>
+    <view class="text-right bg-white solid-bottom">
+      <text class="text-df padding-right">{{item.time}}</text>
+      <text class="text-df padding-right" bindtap="showComment" data-name="{{item.nick_name}}">回复</text>
+    </view>
+  </view>
+  <view class='cu-bar tabbar margin-top'>
+  </view>
+  <view class="cu-bar bg-white tabbar border shop  shadow foot">
+    <view class="action text-red" bindtap="Like"> 
+      <view class="{{like?'icon-appreciatefill':'icon-appreciate'}} text-red">
+      </view>
+      点赞
+    </view>
+    <view class="action text-orange" bindtap="Favor">
+      <view class="{{favor?'icon-favorfill':'icon-favor'}}"></view> 收藏
+    </view>
+    <view class="action" bindtap="showComment">
+      <view class="icon-new">
+      </view>
+      评论
+    </view>
+    <view class="bg-green submit" bindtap="viewFamily">立即参加</view>
+  </view>
+
+  <view class="cu-modal {{modalName=='comment'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">活动评论</view>
+      <view class="action" bindtap="hideModal">
+        <text class="icon-close text-red"></text>
+      </view>
+    </view>
+    <view class="cu-form-group">
+      <textarea data-placeholder="请输入评论" maxlength="-1" class="justify-start {{textareaValue?'value':''}}" bindinput="textareaInput" value="{{textareaValue}}"></textarea>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">取消</view>
+      <view class="action margin-0 flex-sub text-green solid-left" bindtap="comment">确定</view>
+    </view>
+  </view>
+  </view>
+
+  <view class="cu-modal bottom-modal {{modalName=='join'?'show':''}}"  bindtap="hideModal">
+    <view class="cu-dialog" catchtap>
+      <view class="cu-bar bg-white">
+        <view class="action text-green" bindtap="hideModal">取消</view>
+      </view>
+      <view class="padding-sm">
+        <button class="cu-btn block bg-green margin-tb-sm lg" bindtap="create">
+          <text class="icon-roundadd"></text>创建家庭
+        </button>
+        <button wx:if="{{haveFamily}}" class="cu-btn block green line-green lg" bindtap="ChooseCheckbox">
+          加入家庭
+        </button>
+      </view>
+    </view>
+  </view>
+</scroll-view>

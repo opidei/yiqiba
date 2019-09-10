@@ -1,0 +1,27 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{false}}"><view slot="content">用户中心</view></cu-custom>
+<view class="UCenter-bg">
+  <view class="cu-avatar xl round margin-left" style="background-image:url({{avatar}});"></view>
+  <image src="https://image.weilanwl.com/gif/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+</view>
+<view class="cu-list menu sm-border">
+    <view class="cu-item arrow margin-top">
+      <view class="content">
+        <text class="icon-activityfill text-red"></text>
+        <text class="text-grey">我的活动</text>
+      </view>
+    </view>
+    <view class="cu-item arrow margin-top">
+      <button class="cu-btn content" open-type="contact">
+        <text class="icon-newshotfill text-olive"></text>
+        <text class="text-grey">行程列表</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" hover-class="none" url="../list/list" open-type="redirect">
+        <text class="icon-writefill text-orange"></text>
+        <text class="text-grey">旅费清单</text>
+      </navigator>
+    </view>
+    <view class='cu-bar tabbar'>
+    </view>
+  </view>

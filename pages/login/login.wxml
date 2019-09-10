@@ -1,0 +1,12 @@
+<view class='UCenter-bg'>
+  <view class='text-xl'>
+    一起吧孩子们
+    <text class='text-df'></text>
+  </view>
+  <view class='margin-top-sm'>
+    <text>小程序登录</text>
+  </view>
+</view>
+<view class='padding-xl'>
+  <button class='cu-btn  bg-green shadow lg block' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">微信登录</button>
+</view>

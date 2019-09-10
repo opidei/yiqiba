@@ -1,0 +1,42 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">活动行程</view>
+</cu-custom>
+<view class='basis-xl margin-xs padding-sm radius text-xl'>
+  <text class='icon-squarecheck lg text-green'></text>
+  <text>2019年4月28日</text>
+</view>
+<view class='cu-list bg-white menu'>
+  <view class='cu-item' data-action="true" bindtap="navigator">
+    <view class='content'>
+      <text class='icon-pic text-green'></text>
+      <text>密云水库</text>
+    </view>
+  </view>   
+  <view class='cu-item' data-action="false" bindtap="navigator">
+    <view class='content'>
+      <text class='icon-footprint text-red'></text>
+      <text>乘船游湖</text>
+    </view>
+  </view>
+</view>
+<view class="cu-bar text-xl justify-center bg-green shadow foot" data-target='add' bindtap='showModal'>
+  <text class='icon-add text-white'></text>
+  <text class='text-white'>添加行程计划</text>
+</view>
+<view class="cu-modal {{modalname=='add'?'show':''}}" bindtap='hideModal'>
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">添加行程计划</view>
+      <view class="action" bindtap="hideModal">
+        <text class="icon-close text-red"></text>
+      </view>
+    </view>
+    <view class="cu-list grid no-border col-3">
+      <view class="cu-item" wx:for="{{icon}}" wx:key wx:if="{{item.isShow}}" data-type="{{item.type}}"  data-action="0" bindtap='navigator'>
+        <text class="icon-{{item.name}} lg text-{{item.color}}"></text>
+        <text class='text-grey'>{{item.text}}</text>
+      </view>
+    </view>
+  </view>
+</view>

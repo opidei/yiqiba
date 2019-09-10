@@ -1,0 +1,23 @@
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">创建家庭</view>
+</cu-custom>
+<form bindsubmit='formSubmit'>
+  <view class="cu-form-group margin-top">
+    <view class="title">家庭名称</view>
+    <input placeholder="请输入家庭名称" name="family_name"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">联系电话</view>
+    <input placeholder="请输入联系电话" name="contact_number"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">成员数量</view>
+    <input placeholder="请输入成员数量" name="member_count"></input>
+  </view>
+  <view class="padding">
+    <button form-type='submit' class="cu-btn block bg-green margin-tb-sm lg">
+      创建家庭
+    </button>
+  </view>
+</form>

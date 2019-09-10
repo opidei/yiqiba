@@ -1,0 +1,30 @@
+<index wx:if="{{PageCur=='index'}}"></index>
+<activity wx:if="{{PageCur=='activity'}}"></activity>
+<article wx:if="{{PageCur=='article'}}"></article>
+<users wx:if="{{PageCur=='users'}}"></users>
+<view class="cu-bar tabbar bg-white shadow foot">
+  <view class="action" bindtap="NavChange" data-cur="index">
+    <view class='icon-cu-image'>
+      <image src="../../sources/icon/home{{PageCur=='index'?'_select':''}}.png"></image>
+    </view>
+    <view class="{{PageCur=='index'?'text-green':'text-gray'}}">首页</view>
+  </view>
+  <view class="action" bindtap="NavChange" data-cur="activity">
+    <view class='icon-cu-image'>
+      <image src="../../sources/icon/activity{{PageCur=='activity'?'_select':''}}.png"></image>
+    </view>
+    <view class="{{PageCur=='activity'?'text-green':'text-gray'}}">我的活动</view>
+  </view>
+  <!-- <view class="action" bindtap="NavChange" data-cur="article">
+    <view class='icon-cu-image'>
+      <image src="../../sources/icon/article{{PageCur=='article'?'_select':''}}.png"></image>
+    </view>
+    <view class="{{PageCur=='article'?'text-green':'text-gray'}}">攻略</view>
+  </view> -->
+  <view class="action" bindtap="NavChange" data-cur="users">
+    <view class='icon-cu-image'>
+      <image src="../../sources/icon/users{{PageCur=='users'?'_select':''}}.png"></image>
+    </view>
+    <view class="{{PageCur=='users'?'text-green':'text-gray'}}">个人中心</view>
+  </view>
+</view>

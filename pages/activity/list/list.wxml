@@ -1,0 +1,26 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">我的活动</view>
+</cu-custom>
+<scroll-view>
+  <view class='cu-list menu-avatar sm-boder bg-white'>
+    <view wx:for="{{acts}}" wx:key class="cu-item {{index==0?'margin-top':''}}" wx:if="{{item.isshow}}">
+      <view class="cu-avatar radius lg" style="background-image:url({{item.img}});"></view>
+      <view class="content">
+        <view>
+          <text class="text-cut">{{item.activityname}}</text>
+          <view class="cu-tag round bg-orange sm" wx:if="{{item.state==0}}">未开始</view>
+          <view class="cu-tag round bg-green sm" wx:if="{{item.state==1}}">进行中...</view>
+          <view class="cu-tag round bg-red sm" wx:if="{{item.state==2}}">已结束</view>
+        </view>
+        <view class="text-gray text-sm flex">
+          <text class="text-cut">{{item.activityintro}}</text>
+        </view>
+      </view>
+      <view class="action">
+        <view class="text-grey text-xs">活动时间</view>
+        <view class="cu-tag round bg-red sm">{{item.starttime}}</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

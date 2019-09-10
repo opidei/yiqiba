@@ -1,0 +1,98 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">创建活动</view>
+</cu-custom>
+<form bindsubmit='formSubmit'>
+  <view class="cu-form-group margin-top">
+    <view class="title">活动名称</view>
+    <input name="activityname" placeholder="请填写活动名称" value=""></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">活动地点</view>
+    <input name="activityplace" placeholder="请填写活动地点" value=""></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">活动类型</view>
+    <picker name="activityType" bindchange="PickerChange" value="{{activityType?activityType:''}}" range="{{type}}">
+      <view class="picker">
+        {{activityType?type[activityType]:'请选择活动类型'}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">活动简介</view>
+    <textarea name="activityintro" data-placeholder="{{textareaAValue}}" maxlength="-1" placeholder-class="placeholder" value="" class="{{textareaBValue?'value':''}}" bindinput="textareaInput"></textarea>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">开始时间</view>
+    <picker mode="date" name="beginDate" value="{{startdate}}" start="{{date}}" bindchange="SdateChange">
+      <view class="picker">
+        {{startdate}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">结束时间</view>
+    <picker mode="date" name="endDate" value="{{enddate}}" start="{{date}}" bindchange="EdateChange">
+      <view class="picker">
+        {{enddate}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group margin-top">
+    <view class="title">出发地点</view>
+    <input name="departureAddress" placeholder="请填写出发地点" value=""></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">出发时间</view>
+    <picker mode="time" name="departureTime" value="{{time}}" bindchange="TimeChange">
+      <view class="picker">
+        {{time?time:"请选择出发时间"}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-bar bg-white">
+    <view class="action">
+      图片上传
+    </view>
+    <view class="action">
+      {{imgList.length}}/4
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="padding-xs bg-img" style="background-image:url({{imgList[index]}})" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="icon-close"></text>
+        </view>
+      </view>
+      <view class="padding-xs solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+        <text class="icon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-form-group">
+    <view class="title">允许编辑</view>
+    <switch name="allowedit"></switch>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">是否付费</view>
+    <switch name="needpay" bindchange="needPay"></switch>
+  </view>
+  <view class="cu-form-group" wx:if="{{registrationFee}}">
+    <view class="title">付费金额</view>
+    <input name="registrationFee" value="0" placeholder='请输入参加活动费用' type='number'></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">活动预算</view>
+    <input name="cost" placeholder='请输入人均预算花费' type='number' value="0"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">备注</view>
+    <input name="remark" placeholder='请输入备注' value=""></input>
+  </view>
+  <view class="cu-bar btn-group margin-top">
+    <button form-type='submit' class="cu-btn bg-green shadow-blur round lg">提交</button>
+  </view>
+</form>
